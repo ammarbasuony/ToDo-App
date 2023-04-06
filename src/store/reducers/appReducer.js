@@ -41,7 +41,10 @@ const appReducer = (state = initialState, action) => {
         ...state,
         toDos: state.toDos.map((toDo) =>
           toDo.id === action.payload
-            ? { ...toDo, completed: !toDo.completed }
+            ? {
+                ...toDo,
+                finishedAt: toDo.finishedAt ? null : new Date().toISOString(),
+              }
             : toDo
         ),
       };
@@ -50,7 +53,11 @@ const appReducer = (state = initialState, action) => {
         ...state,
         toDos: state.toDos.map((toDo) =>
           toDo.id === action.payload
-            ? { ...toDo, archived: !toDo.archived }
+            ? {
+                ...toDo,
+                isArchived: !toDo.isArchived,
+                archivedAt: new Date().toISOString(),
+              }
             : toDo
         ),
       };

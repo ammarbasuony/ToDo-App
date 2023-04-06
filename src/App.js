@@ -12,17 +12,13 @@ import WeatherList from "pages/Weather";
 
 // Material UI
 import IconButton from "@mui/material/IconButton";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useTheme } from "@emotion/react";
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
-const App = () => {
+const App = ({ colorMode }) => {
   const dispatch = useDispatch();
-
   const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
 
   useEffect(() => {
     const getToDosFromLocalStorage = JSON.parse(
@@ -32,33 +28,33 @@ const App = () => {
   }, []);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <div className={styles.App}>
-          <h1>
-            To Do App{" "}
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={colorMode.toggleColorMode}
-              color="inherit"
-            >
-              {theme.palette.mode === "dark" ? (
-                <Brightness7Icon />
-              ) : (
-                <Brightness4Icon />
-              )}
-            </IconButton>
-          </h1>
+    <div className={styles.App}>
+      <h1
+        style={{
+          color: theme.palette.mode === "dark" ? "#eeeeee" : "#000",
+        }}
+      >
+        To Do App
+        <IconButton
+          sx={{ ml: 1 }}
+          onClick={colorMode.toggleColorMode}
+          color="inherit"
+        >
+          {theme.palette.mode === "dark" ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
+        </IconButton>
+      </h1>
 
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/weather" element={<WeatherList />} />
-            </Routes>
-          </Router>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/weather" element={<WeatherList />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

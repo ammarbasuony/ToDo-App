@@ -1,8 +1,19 @@
-@import "../../styles/vars";
-
 .Home {
   .weather {
     margin: 0 auto;
     max-width: 300px;
+  }
+
+  .toDos {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    gap: 20px;
+
+    .toDosContent {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
   }
 }
