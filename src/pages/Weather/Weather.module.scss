@@ -1,0 +1,17 @@
+@import "../../styles/vars";
+
+.WeatherList {
+  h2 {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+  }
+
+  .cards {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+  }
+}
