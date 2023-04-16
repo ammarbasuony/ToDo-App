@@ -6,10 +6,14 @@ import {
   DELETE_TODO,
   TOGGLE_TODO,
   ARCHIVE_TODO,
+
+  // Weather Types
+  GET_WEATHER,
 } from "../types";
 
 const initialState = {
   toDos: [],
+  weather: null,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -60,6 +64,11 @@ const appReducer = (state = initialState, action) => {
               }
             : toDo
         ),
+      };
+    case GET_WEATHER:
+      return {
+        ...state,
+        weather: action.payload,
       };
     default:
       return state;

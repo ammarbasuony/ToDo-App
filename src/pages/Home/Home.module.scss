@@ -2,18 +2,36 @@
   .weather {
     margin: 0 auto;
     max-width: 300px;
+    padding: 0 20px;
   }
 
   .toDos {
     max-width: 1000px;
     margin: 40px auto 0;
     gap: 20px;
+    padding: 0 20px;
 
     .toDosContent {
       margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .toDos {
+      .toDosContent {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .toDos {
+      .toDosContent {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }

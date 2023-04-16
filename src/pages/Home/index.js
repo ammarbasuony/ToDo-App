@@ -16,7 +16,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 const Home = () => {
-  const { toDos } = useSelector((state) => state.appReducer);
+  const { toDos, weather } = useSelector((state) => state.appReducer);
   const [value, setValue] = useState(0);
   const [allToDos, setAllToDos] = useState([]);
 
@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <div className={styles.Home}>
       <div className={styles.weather}>
-        <WeatherCard withLink={true} />
+        <WeatherCard withLink={true} weather={weather} />
       </div>
       <CreateToDo />
 

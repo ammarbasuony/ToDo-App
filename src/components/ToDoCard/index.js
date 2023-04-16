@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import styles from "./ToDoCard.module.scss";
 
 // Actions
 import { deleteToDo, archiveToDo, toggleToDo, updateToDo } from "store/actions";
@@ -106,7 +107,7 @@ const ToDoCard = ({
   };
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ width: "100%" }}>
       <CardContent>
         <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
           <strong>Created At:</strong> {isoToLocale(createdAt)}
@@ -176,7 +177,7 @@ const ToDoCard = ({
             </Button>
           </>
         ) : (
-          <>
+          <div className={styles.btns}>
             <Button size="small" onClick={() => finishToDoHandler(id)}>
               {finishedAt ? "Uncomplete" : "Finish"}
             </Button>
@@ -196,7 +197,7 @@ const ToDoCard = ({
             >
               Delete
             </Button>
-          </>
+          </div>
         )}
       </CardActions>
     </Card>

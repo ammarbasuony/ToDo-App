@@ -6,6 +6,9 @@ import {
   DELETE_TODO,
   TOGGLE_TODO,
   ARCHIVE_TODO,
+
+  // Weather Types
+  GET_WEATHER,
 } from "./types";
 
 // ToDos Actions
@@ -48,5 +51,13 @@ export const archiveToDo = (id) => {
   return {
     type: ARCHIVE_TODO,
     payload: id,
+  };
+};
+
+// Weather Actions
+export const getWeather = (weather) => {
+  return {
+    type: GET_WEATHER,
+    payload: weather,
   };
 };

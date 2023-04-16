@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from "axios";
 import styles from "./App.module.scss";
 
 // Actions
-import { getToDos } from "store/actions";
+import { getToDos, getWeather } from "store/actions";
 
 // Pages
 import Home from "pages/Home";
@@ -19,6 +20,38 @@ import { useTheme } from "@emotion/react";
 const App = ({ colorMode }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+
+  const API_KEY = "2b3ea704448c739eae3a40b6bb855225";
+
+  const getCurrentWeather = async (lat, lon) => {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+    );
+    dispatch(getWeather(response.data));
+  };
+
+  const getLatLon = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setLatitude(lat);
+        setLongitude(lon);
+      });
+    }
+  };
+
+  useEffect(() => {
+    getLatLon();
+  }, []);
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      getCurrentWeather(latitude, longitude);
+    }
+  }, [latitude, longitude]);
 
   useEffect(() => {
     const getToDosFromLocalStorage = JSON.parse(
