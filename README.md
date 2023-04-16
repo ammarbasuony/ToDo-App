@@ -1,7 +1,7 @@
 # To Do App 📝📌📋
 This is a simple to-do app that allows you to add ✏️, edit 📝, delete 🗑️, and archive 📦 to-do items. It also allows you to mark items as complete ✅. This app was created using React ⚛️ and Redux ⚛️🔴.
 
-
+![ToDo](https://github.com/ammarbasuony/ToDo-App/blob/main/docs/To-Do.png)
 
 ## Installation 💻
 1. Install [Node.js](https://nodejs.org/en/download/) 📥
